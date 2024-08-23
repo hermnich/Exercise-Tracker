@@ -1,0 +1,82 @@
+body {
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  background-color: #3f434b;
+  margin: 20px;
+  padding: 0px 20px 5px 20px;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  color: white;
+  text-align: center;
+}
+
+.App-header {
+  border: 2px solid;
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.App-footer {
+  padding-top: 30vh;
+}
+
+tr th {
+  border: 2px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+  background-color: #304e4e;
+}
+
+tr td {
+  border: 2px solid;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+tr:nth-child(even) {background-color: #304e4e;}
+
+table {
+  border: 2px solid;
+  border-collapse: collapse;
+}
+
+.Exercise-table {
+  padding-top: 40px;
+}
+
+fieldset {
+  background-color:#304e4e;
+  text-align: left;
+}
+
+.Data-input {
+  padding: 5px 0px 5px 0px;
+}
+
+input {
+  font-family: inherit;
+}
+
+button {
+  font-family: inherit;
+  padding: 5px 20px 5px 20px;
+  background-color:#304e4e;
+  color:#ffffff;
+  border: 2px solid;
+}
+
+.App-nav a {
+  padding: 5px 20px 5px 20px;
+  background-color:#304e4e;
+  text-decoration:none;
+  color:#ffffff;
+  border: 2px solid;
+}
+
+.App-nav a:hover, button:hover {
+  color:#304e4e;
+  background-color:#ffffff;
+}
+
+
+

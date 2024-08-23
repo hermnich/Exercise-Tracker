@@ -1,0 +1,223 @@
+### Request 1: Create an exercise
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Squat",
+    "reps": 10,
+    "weight": 30,
+    "unit": "lbs",
+    "date": "01-18-22"
+}
+
+### Request 2: Create another exercise
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 25,
+    "unit": "kgs",
+    "date": "01-18-22"
+}
+
+### Request 3: Create an exercise
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Squat",
+    "reps": 12,
+    "weight": 30,
+    "unit": "lbs",
+    "date": "01-25-22"
+}
+
+### Request 4: Create another exercise
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 10,
+    "weight": 30,
+    "unit": "kgs",
+    "date": "01-25-22"
+}
+
+### Request 5: Create with missing property 400 status code
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 25,
+    "date": "01-18-22"
+}
+
+### Request 6: Create with missing property 400 status code
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 25,
+    "unit": "kgs"
+}
+
+### Request 7: Create with invalid property 400 status code
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 0,
+    "unit": "kgs",
+    "date": "01-18-22"
+}
+
+### Request 8: Create with invalid property 400 status code
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": "not a number",
+    "weight": 1,
+    "unit": "kgs",
+    "date": "01-18-22"
+}
+
+
+### Request 9: Create with invalid property 400 status code
+POST http://localhost:3000/exercises HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 18,
+    "weight": 1,
+    "unit": "kgs",
+    "date": "aa-18-22"
+}
+
+
+### Request 10: Retrieve should return the 4 exercises we have created
+GET http://localhost:3000/exercises HTTP/1.1
+
+
+### Request 11: Update the Deadlift with date 01-25-22. Set reps to 12 and 
+###     unit to lbs (weight remains 30 and date remains 01-25-22)
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22. You can find that ID from the
+###     previous retrieve request. It would be more convenitent to replace
+###     all occurrences of the ID value in the file, since later tests
+###     also use the ID for Deadlift with date 01-25-22
+PUT http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 30,
+    "unit": "lbs",
+    "date": "01-25-22"
+}
+
+### Request 12: Verify that the previous update set reps to 12 and unit
+###     to lbs (weight remains 30)
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22.
+GET http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+
+
+### Request 13: Update with missing property. 400 status code
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22.
+PUT http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 25,
+    "unit": "kgs"
+}
+
+
+### Request 14: Update with invalid property. 400 status code
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22.
+PUT http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": "not a number",
+    "weight": 1,
+    "unit": "kgs",
+    "date": "01-18-22"
+}
+
+
+### Request 15: Update with invalid property. 400 status code
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22.
+PUT  http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 18,
+    "weight": 1,
+    "unit": "kgs",
+    "date": "aa-18-22"
+}
+
+### Request 16: Update for non-existent ID. 404 status code
+PUT  http://localhost:3000/exercises/6281146f945176f317005603 HTTP/1.1
+content-type: application/json
+
+{
+    "name": "Deadlift",
+    "reps": 12,
+    "weight": 30,
+    "unit": "lbs",
+    "date": "06-25-21"
+}
+
+
+### Request 17: Retreive for non-existent ID. 404 status code
+GET  http://localhost:3000/exercises/6281146f945176f317005603 HTTP/1.1
+
+### Request 11: Delete the Deadlift with date 01-25-22.
+### NOTE: Change the value of ID in the following URL to the ID assigned
+###     to Deadlift with date 01-25-22. You can find that ID from the
+##      previous retrieve request
+DELETE http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+
+
+### Request 18: Verify that the Deadlift on 01-25-22 has been deleted. 404 status code
+GET http://localhost:3000/exercises/64dc421d46b9459b8fcef816 HTTP/1.1
+
+
+### Request 19: Verify that the Deadlift on 01-25-22 has been deleted
+GET http://localhost:3000/exercises HTTP/1.1
+
+
+### Request 20: Delete for non-existent ID. 404 status code
+DELETE http://localhost:3000/exercises/6281ac0ed6e8e969e761e23e HTTP/1.1
+
+### redgif test 1
+GET https://api.redgifs.com/v2/auth/temporary
+
+### redgif test 2
+GET https://api.redgifs.com/v2/gifs/rigidtannarwhale
+Authorization: Bearer eyJ0eXAiOiJKV1QiLCJhbGciOiJSUzI1NiJ9.eyJpc3MiOiJhdXRoLXNlcnZpY2UiLCJpYXQiOjE3MDMxMDkzOTgsImF1ZCI6Imh0dHBzOi8vYXBpLnJlZGdpZnMuY29tIiwiYXpwIjoiMTgyM2MzMWY3ZDMtNzQ1YS02NTg5LTAwMDUtZDhlOGZlMGE0NGMyIiwiZXhwIjoxNzAzMTk1Nzk4LCJzdWIiOiJjbGllbnQvMTgyM2MzMWY3ZDMtNzQ1YS02NTg5LTAwMDUtZDhlOGZlMGE0NGMyIiwic2NvcGVzIjoicmVhZCIsInZhbGlkX2FkZHIiOiIxNzMuODguMTMyLjE2MiIsInZhbGlkX2FnZW50IjoidnNjb2RlLXJlc3RjbGllbnQiLCJyYXRlIjotMSwiaHR0cHM6Ly9yZWRnaWZzLmNvbS9zZXNzaW9uLWlkIjoiREZSeXdDdG5ncTRnbm12YkU3M2tXZyJ9.DnwJxTYa8l_vCVqa61ltPhwM0vZhiARuWlL4o3e7AaxI5JxpgpKDRnKAm_9SxwiuyrGHK0uvqS3sjLRtK9Hg1H8vZm7vsSW2Go5ZvL88ONVukWJNRRcG2ZqQN-utI_m1a2pSmY5lFxUq6Pe45SosKIpSuuHpW_8DewlDZzWet39bkeVw5YfYG8uJiee4NgFPNXmztt7tLFgEzdZtK--Bsn1U-DpKEcFJBjU-nsUZy25Z0fWc82LSAFnYoVgTx5RLe56d18mFUVv3nu_Ag2MOZgYNOBlsPFdFp_Juz3hXmH9p2lSrxfXdIJpw_sVklrnZmEb1EZ8gr1FtROq_ebqJWA
+
+###
+GET https://thumbs44.redgifs.com/RigidTanNarwhale-mobile.mp4?expires=1703196000&signature=v2:07662bcf00e52241c27ebfb2adb49e221be9181d43c2b0bb547527564ba08500&for=173.88.132&hash=6163438793
